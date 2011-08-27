@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Wunderkind jQuery Plugin</title>
+<link type="text/css" rel="stylesheet" href="css/style.min.css" />
+<script>(function() {var ga = document.createElement('script');     ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl'   : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script><script> var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-12807339-1']); 
+_gaq.push(['_trackPageview', 'Wunderkind']);</script>
+</head>
+<body>
+<div class="wrapper">
+<h1>Wunderkind jQuery Plugin</h1>
+
+<p class="c">
+ Wunderkind is a jQuery plugin that generates CSS imagemaps (non-spritebased)
+ with hover animations.
+</p>
+
+
+<h2 id="usage">Usage</h2>
+<div class="panel">
+<p>
+ Call <code>wunderkind</code> on a jQuery collection of block level elements
+ containing a single image tag. The image tag will serve as the default (off)
+ state for the wunderkind imagemap.
+</p>
+
+<div>
+ <em>wunderkind</em> takes an argument object with the following keys:
+ <dl>
+	<dt>width</dt>
+		<dd><em>integer</em><br />
+			You must explicitly specify the width of the created div (fixes
+			issue where if wunderkind is called on a hidden div the created
+			div has no dimensions).</dd>
+	<dt>height</dt>
+		<dd><em>integer</em><br />
+			You must explicitly specify the height of the created div (fixes
+			issue where if wunderkind is called on a hidden div the created
+			div has no dimensions).</dd>
+	<dt>hotspots</dt>
+		<dd><em>array</em><br />
+			An associative array of hotspots.</dd>
+ </dl>
+ 
+<h3 id="usage--defining-hotspots">Defining hotspots</h3>
+ <p>The hotspots array takes the following key/value pairs:</p>
+ <dl>
+	<dt>name</dt>
+		<dd><em>string</em><br />
+			Identifies a hotspot. Multiple hotspots can have the same name.
+			If multiple hotspots share a name, hovering over one will activate
+			all of the hotspots.</dd>
+	<dt>image</dt>
+		<dd><em>string</em><br />
+			A URL (relative or absolute) to the image with the activated state
+			for the hotspot.</dd>
+	<dt>top</dt>
+		<dd><em>integer</em><br />
+			The y offset relative from the parent div that the hotspot begins.
+		</dd>
+	<dt>left</dt>
+		<dd><em>integer</em><br />
+			The x offset relative from the parent div that the hotspot begins.
+		</dd>
+	<dt>width</dt>
+		<dd><em>integer</em><br />
+			The width of the hotspot.</dd>
+	<dt>height</dt>
+		<dd><em>integer</em><br />
+			The height of the hotspot.</dd>
+	<dt>onClick</dt>
+		<dd>Can be a:
+			<ul>
+				<li>
+				 <em>string</em><br />
+				 A URL to open on click of the hotspot.
+				</li>
+				<li>
+				 <em>function</em><br />
+				 A function to execute on click. The function has one argument
+				 that will receive the event. In the event is data object called
+				 <var>hotspot</var> that provides access to the jQuery object 
+				 that was clicked.
+				</li>
+			</ul>				
+		</dd>
+ </dl>
+</div>
+
+<h3 id="usage--example-code">Example code</h3>
+<pre>
+$('#insert-here').wunderkind({
+	height : 480
+  , width : 640
+  , hotspots : [
+	  { name    : 'black-kitty'
+	  , image    : 'images/black_on.jpg'
+	  , top     : 25
+	  , left    : 87
+	  , width   : 232
+	  , height  : 313
+	  , onClick : 'http://www.google.com/'
+	  }
+	, { name    : 'tabby-kitty'
+	  , image    : 'images/tabby_on.jpg'
+	  , top     : 35
+	  , left    : 212
+	  , width   : 428
+	  , height  : 390
+	  , onClick : function(e) {
+			alert('clicked ' + e.data.hotspot.attr('rel')); 
+		}
+	  }
+	]
+});
+</pre>
+</div><!-- end .hidden -->
+
+<h2 id="usage">Download</h2>
+<div class="hidden panel">
+	<p class="c"><a href="js/jquery.wunderkind.min.js">jquery.wunderkind.min.js</a> (2.11kb, minified)</p>
+	<p class="c"><a href="js/jquery.wunderkind.js">jquery.wunderkind.js</a> (3.06kb, source)</p>
+</div>
+
+
+<h2 id="demo">Demo</h2>
+<div class="panel">
+	<p class="c">Hover over/click on a kitten.</p>
+	<div id="insert-here">
+		<!-- Wunderkind gets inserted here! -->
+		<img src="images/kittens_off.jpg" />
+	</div>
+</div>
+
+<h2 id="comments">Comments</h2>
+<div class="panel c">
+	<p>
+	 Uhhh... just leave a comment at the blog. Should load in an iframe in a 
+	 few...
+	</p>
+	<div id="comments-iframe">Loading!</div>
+</div>
+
+<h2 id="credits">Credits</h2>
+<div class="panel c">
+	<p>
+	 jQuery Wunderkind is copyright &copy;2011 
+	 <a href="http://card.davidosomething.com/" rel="me">David O'Trakoun</a>.
+	</p>
+	<p>
+	 <a href="http://www.flickr.com/photos/jameswragg/4688532009/" rel="external nofollow"><em>Kittens!</em></a> 
+	 photo by 
+	 <a href="http://www.flickr.com/people/jameswragg/" rel="nofollow">James Wragg</a>.
+	</p>
+</div>
+
+</div><!-- end .wrapper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="js/jquery.wunderkind.min.js"></script>
+<script>$(function() {
+	$('h2').append('<span>click to expand</span><span class="hidden">click to collapse</span>').click(function() { 
+		$(this).toggleClass('open').find('span').toggleClass('hidden').end()
+		 .next().slideToggle('normal', function() {
+			$(window).scrollTop($(this).prev().position().top);
+		});
+	}).next('div.panel').hide();
+
+	$('#credits').toggleClass('open').find('span').toggleClass('hidden').end().next().slideToggle();
+		 
+	$('#insert-here').wunderkind({
+		height : 480
+	  , width : 640
+	  , hotspots : [
+		  { name    : 'black-kitty'
+		  , image    : 'images/black_on.jpg'
+		  , top     : 25
+		  , left    : 87
+		  , width   : 232
+		  , height  : 313
+		  , onClick : 'http://www.google.com/'
+		  }
+		, { name    : 'tabby-kitty'
+		  , image    : 'images/tabby_on.jpg'
+		  , top     : 35
+		  , left    : 212
+		  , width   : 428
+		  , height  : 390
+		  , onClick : function(e) {
+				alert('clicked ' + e.data.hotspot.attr('rel')); 
+			}
+		  }
+		]
+	});
+});
+window.onload = function() {
+	$('#comments-iframe').html('<iframe src="http://hokuten.net/2011/jquery-wunderkind-plugin/#comments"></iframe>');
+}
+</script>
+</body>
+</html>
